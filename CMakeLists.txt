@@ -3,6 +3,18 @@ cmake_minimum_required(VERSION 2.8)
 
 project(UV C)
 
+set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
+
+if(MSVC)
+	include(MSVCRuntime)
+
+	if(NOT DEFINED MSVC_RUNTIME)
+		set(MSVC_RUNTIME "static")
+	endif()
+
+	configure_msvc_runtime()
+endif()
+
 include_directories(include src)
 
 set(SOURCES
